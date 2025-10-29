@@ -1,9 +1,72 @@
+"use client";
+
 import Image from "next/image";
+import { useAuth } from "@/components/auth-provider";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Home() {
+  const { isAuthenticated, user, logout, isLoading } = useAuth();
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-xl font-semibold">Loading...</h2>
+          <p className="text-muted-foreground">Checking authentication status</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
       <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+        {/* Authentication Status */}
+        <div className="w-full max-w-2xl">
+          {isAuthenticated ? (
+            <div className="bg-card border rounded-lg p-4 mb-8">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold text-foreground">
+                    Welcome back, {user?.username}!
+                  </h2>
+                  <p className="text-sm text-muted-foreground">
+                    You are successfully logged in.
+                  </p>
+                </div>
+                <div className="space-x-2">
+                  <Link href="/dashboard">
+                    <Button variant="outline">Go to Dashboard</Button>
+                  </Link>
+                  <Button variant="outline" onClick={logout}>
+                    Logout
+                  </Button>
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-card border rounded-lg p-4 mb-8">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h2 className="text-lg font-semibold text-foreground">
+                    Not logged in
+                  </h2>
+                  <p className="text-sm text-muted-foreground">
+                    Please log in to access all features.
+                  </p>
+                </div>
+                <div className="space-x-2">
+                  <Link href="/login">
+                    <Button>Login</Button>
+                  </Link>
+                  <Link href="/dashboard">
+                    <Button variant="outline">Dashboard</Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
         <Image
           className="dark:invert"
           src="/next.svg"
