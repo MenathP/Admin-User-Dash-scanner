@@ -1,3 +1,72 @@
+# Admin User Dash Scanner
+
+A Next.js 15 dashboard scaffold for admin/user pages with auth and interactive components.
+
+## Quick start
+
+Prerequisites
+- Node.js 18+ (Node 20 recommended)
+- pnpm (recommended) or npm
+
+Install dependencies
+
+Using pnpm (preferred):
+
+```bash
+pnpm install
+```
+
+Using npm:
+
+```bash
+npm install
+```
+
+Run development server
+
+```bash
+pnpm dev
+# or
+npm run dev
+```
+
+Build for production
+
+```bash
+pnpm build
+pnpm start
+# or
+npm run build
+npm start
+```
+
+Environment
+
+This repository includes API routes under `app/api` which may depend on environment variables (for example, JWT secrets, database URLs, etc.). There is no app-wide `.env` file committed. Create a `.env.local` in the project root if you need to add secrets. Common variables you may need to set:
+
+- `DATABASE_URL` - connection string for your database (if used)
+- `JWT_SECRET` - secret used for signing tokens
+- Any other variables referenced by your API routes or server code
+
+Project structure
+
+- `app/` - Next.js app router pages and API routes
+- `components/` - shared React components and UI primitives
+- `public/` - static assets
+- `hooks/`, `lib/` - utility hooks and helper functions
+
+Notes
+
+- The project includes both `pnpm-lock.yaml` and `package-lock.json`. Use the package manager you prefer; `pnpm` is recommended for faster installs and disk space efficiency.
+- This README was added and pushed to the repository on branch `main`.
+
+Contributing
+
+If you make changes, please run the dev server and add tests where appropriate.
+
+License
+
+This project doesn't include a license file. Add a `LICENSE` if you intend to make it public under a specific license.
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
